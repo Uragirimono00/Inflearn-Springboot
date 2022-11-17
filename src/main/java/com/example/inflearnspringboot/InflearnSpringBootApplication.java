@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class InflearnSpringBootApplication {
 
     public static void main(String[] args) {
-
+// 첫커밋
         Hello hello = new Hello();
         hello.setData("hello");
         String data = hello.getData();
