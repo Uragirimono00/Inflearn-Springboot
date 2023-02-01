@@ -1,6 +1,7 @@
 package com.example.inflearnspringboot.domain.item;
 
 import com.example.inflearnspringboot.domain.Category;
+import com.example.inflearnspringboot.exception.NotEnoughtStockException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,8 +22,27 @@ public abstract class Item {
 
     private String name;
     private int price;
-    private int strockQuantity;
+    private int stockQuantity;
 
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
+
+    //==비즈니스 로직==//
+    /**
+     * stock 증가
+     */
+    public  void addStock(int quantity) {
+        this.stockQuantity += quantity;
+    }
+
+    /**
+     * stock 감소
+     */
+    public void removeStorck(int quantity) {
+        int restStock = this.stockQuantity - quantity;
+        if (restStock < 0){
+            throw new NotEnoughtStockException("need more stock");
+        }
+        this.stockQuantity = restStock;
+    }
 }
