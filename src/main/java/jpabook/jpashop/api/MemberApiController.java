@@ -49,10 +49,10 @@ public class MemberApiController{
 
     @PutMapping("/api/v2/members/{id}")
     public UpdateMemberResponse updateMemberV2(@PathVariable Long id, @RequestBody @Valid UpdateMemberRequest request){
-                memberService.update(id, request.getName());
-                Member findMember = memberService.findMember(id);
+        memberService.update(id, request.getName());
+        Member findMember = memberService.findMember(id);
 
-                return new UpdateMemberResponse(findMember.getId(), findMember.getName());
+        return new UpdateMemberResponse(findMember.getId(), findMember.getName());
     }
 
     @Data
